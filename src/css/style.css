@@ -15,6 +15,7 @@ body{
     font-size: 1.6rem;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
+    cursor: default;
 }
 
 /*--header--*/
@@ -24,7 +25,6 @@ body{
     background-color: #000000;
 }
 .header .header-container{
-    
     display: flex;
     padding: 20px 40px;
     justify-content: space-between;
@@ -50,71 +50,28 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
- } 
+    width: 100%; 
+} 
 
 .hero .carrossel{
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 90vh;
+    max-height: 90vh;
     width: 100%;
+    overflow: hidden;
+}
+.hero .carrossel .imagem-carrossel{
+    display: flex;
+    transition: transform 0.7s ease-in-out;
+    transform: translateX(0);
 }
 
-.hero .carrossel .imagem-carrossel{
-    background: no-repeat center;
-    background-size: cover;
+.hero .carrossel .imagem{
+    object-fit: cover;
     width: 100%;
     height: 100%;
-    position: absolute;
-    z-index: -1;
-    transition: 0.8s ease-in-out;
-    opacity: 0;
-}
-.hero .carrossel .imagem-carrossel.mostrar{
-    opacity: 1;
-}
-
-.hero .carrossel .imagem1 {
-    background-image: url(../images/mulher-no-escritorio.jpg);
-}
-.hero .carrossel .imagem2 {
-    background-image: url(../images/escritorio.jpg);
-}
-.hero .carrossel .imagem3 {
-    background-image: url(../images/evolução-da-entresa.jpg);
-}
-.hero .carrossel .imagem4 {
-    background-image: url(../images/suporte.jpg);
-}
-
-.hero .carrossel .seta{
-    background: url(../images/seta\ direita.png) center no-repeat;
-    background-size: cover;
-    filter: invert(1);
-    width: 50px;
-    height: 70px;
-    display: flex;
-    position: absolute;
-    right: 3%;
-}
-
-.hero .carrossel .seta.seta-voltar{
-    transform: rotateY(180deg);
-    left: 3%;
-}
-
-.opacidade{
-    opacity: 0.6;
-    cursor: default;
-}
-
-.hero h2 {
-    color: coral;
-    font-weight:500 ;
-    text-transform: uppercase;
-    font-size: 4rem;
 }
 
 .hero .carrossel::after{
@@ -132,14 +89,16 @@ body{
 
 @media (max-width: 426px){
     .hero{
-    height: 60vh;
     }
-    .hero h2{
+    .hero .carrossel h2{
         font-size: 2.5rem;
     }
     .hero .carrossel .seta{
         width: 30px;
         height: 40px;
+    }
+    .hero .carrossel::after{
+        bottom: 20px;
     }
 } 
 
@@ -167,14 +126,12 @@ body{
 .about .item h3{
     font-weight: 700;
     font-size: 4rem;
-    
 }
 
 .about .item p{
     font-size: 1.8rem;
     margin: 30px 0;
     font-weight: 400;
-
 }
 
 .about .item .btn-know-more{

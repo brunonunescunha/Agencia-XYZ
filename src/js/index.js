@@ -1,53 +1,16 @@
-const setaVoltar = document.getElementById("seta-voltar")
-const setaAvancar = document.getElementById("seta-avancar")
-const imagens = document.querySelectorAll(".imagem-carrossel")
+const imagens = document.getElementById("imagens")
+const imagem = document.querySelectorAll(".imagem")
 
-let imagemAtual = 0
+imagemAtual = 0
 
-setaAvancar.addEventListener("click", () => {
-    if (imagemAtual === imagens.length -1){
-        return
-    }
-    imagemAtual++;
+function carrossel(){
+    imagemAtual++
 
-    esconderImagemMostrar()
-
-    imagens[imagemAtual].classList.add("mostrar")
-
-    colocarOpacidadeNaUtimaOuNaPrimeiraImagem()
-
-})
-
-setaVoltar.addEventListener("click", () => {
-    if(imagemAtual === 0){
-        return
+    if (imagemAtual > imagem.length - 1) {
+        imagemAtual = 0
     }
 
-    imagemAtual--;
-
-    esconderImagemMostrar()
-
-    imagens[imagemAtual].classList.add("mostrar")
-
-    colocarOpacidadeNaUtimaOuNaPrimeiraImagem()
-})
-
-function esconderImagemMostrar() {
-    const imagemMostrada = document.querySelector(".mostrar")
-    imagemMostrada.classList.remove("mostrar")
+    imagens.style.transform = `translateX(${-imagemAtual * 100}%)`
 }
 
-function colocarOpacidadeNaUtimaOuNaPrimeiraImagem(){
-    const naoEAPrimeiraImagem = imagemAtual !== 0 
-    if(naoEAPrimeiraImagem){
-        setaVoltar.classList.remove("opacidade")
-    } else {
-        setaVoltar.classList.add("opacidade")
-    }
-    const chegouNaUtimaImagem = imagemAtual !== 0 && imagemAtual === imagens.length -1
-    if (chegouNaUtimaImagem) {
-        setaAvancar.classList.add("opacidade")
-    } else {
-        setaAvancar.classList.remove("opacidade")
-    }
-}
+setInterval(carrossel, 2300)
